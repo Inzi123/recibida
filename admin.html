@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lista de confirmados</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#2a3114">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Permanent+Marker&display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"
+          integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R"
+          crossorigin="anonymous"></script>
+  <!-- script.js trae SUPABASE_URL y SUPABASE_KEY (se completan una sola vez, ahí) -->
+  <script defer src="script.js"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <main class="sheet admin">
+    <header class="admin__header">
+      <h1 class="admin__title">Lista de confirmados</h1>
+      <p class="admin__sub">La recibida de Tomás, viernes 23 de octubre a las 21:30.</p>
+      <button type="button" class="btn btn--line" id="refresh" hidden>Actualizar</button>
+    </header>
+
+    <form id="login" class="admin__login" novalidate hidden>
+      <label for="clave">Clave</label>
+      <div class="admin__login-row">
+        <input id="clave" name="clave" type="password" autocomplete="current-password"
+               autocapitalize="off" autocorrect="off" spellcheck="false" required
+               aria-describedby="login-error">
+        <button type="submit" class="btn btn--brush" id="login-btn">Ver la lista</button>
+      </div>
+      <p id="login-error" class="field__error" role="alert" hidden></p>
+    </form>
+
+    <div id="admin-list" hidden>
+      <p id="admin-status" class="admin__status" role="status" hidden></p>
+
+      <section id="admin-summary" class="admin__summary" aria-label="Resumen" hidden>
+        <p class="stat stat--main"><strong id="total-personas">0</strong> <span id="total-personas-label">personas vienen</span></p>
+        <p class="stat"><strong id="total-si">0</strong> <span id="total-si-label">respuestas que sí</span></p>
+        <p class="stat"><strong id="total-no">0</strong> <span id="total-no-label">no pueden ir</span></p>
+      </section>
+
+      <section id="vienen-section" class="admin__group" aria-labelledby="vienen-title" hidden>
+        <h2 id="vienen-title" class="admin__group-title">Vienen</h2>
+        <ol id="vienen-list" class="guest-list"></ol>
+      </section>
+
+      <section id="no-section" class="admin__group" aria-labelledby="no-title" hidden>
+        <h2 id="no-title" class="admin__group-title">No pueden ir</h2>
+        <ol id="no-list" class="guest-list"></ol>
+      </section>
+
+      <details id="old-section" class="admin__old" hidden>
+        <summary id="old-summary">Respuestas reemplazadas</summary>
+        <p class="admin__note">Son respuestas anteriores de alguien que después volvió a confirmar con el mismo nombre. No se cuentan en el total.</p>
+        <ol id="old-list" class="guest-list"></ol>
+      </details>
+    </div>
+  </main>
+</body>
+</html>

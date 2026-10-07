@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>La recibida de Tomás</title>
+  <meta name="description" content="La recibida de Tomás: viernes 23 de octubre a las 21:30, en Ruta 92 y Calle Fuerte. Confirmá si venís.">
+  <meta name="theme-color" content="#2a3114">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Permanent+Marker&display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- supabase-js v2 con versión fija -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"
+          integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R"
+          crossorigin="anonymous"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#confirmar">Ir a confirmar asistencia</a>
+
+  <!-- Filtro para que los dibujos se vean hechos a mano -->
+  <svg width="0" height="0" class="defs" aria-hidden="true" focusable="false">
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="3.5"/>
+    </filter>
+  </svg>
+
+  <div class="sheet">
+    <header class="hero">
+      <img class="hero__vine" src="img/parra.jpg" alt="" width="330" height="370" fetchpriority="high">
+
+      <p class="note" aria-hidden="true">Fin de una etapa, comienza otra…</p>
+
+      <svg class="cap" viewBox="0 0 200 124" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)">
+          <path d="M22 22l14 10M10 50h17M178 22l-14 10M190 50h-17M100 2v8"/>
+          <path class="cap__fill" d="M56 50v34c18 15 70 15 88 0V50"/>
+          <path class="cap__fill" d="M100 16l72 26-72 26-72-26z"/>
+          <path d="M100 42l50 8v32"/>
+          <path d="M144 84h12l3 22h-18z" fill="currentColor"/>
+        </g>
+      </svg>
+
+      <h1 class="title">
+        <span class="title__small">Me</span>
+        <span class="title__big">recibo</span>
+      </h1>
+      <svg class="title__underline" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M6 15C70 7 150 5 294 11M40 20c60-5 130-6 210-3"/>
+      </svg>
+
+      <p class="signature">Tomás</p>
+
+      <div class="when">
+        <p class="when__day">
+          <span>Viernes</span>
+          <strong>23</strong>
+          <span>de octubre</span>
+        </p>
+        <span class="when__rule" aria-hidden="true"></span>
+        <p class="when__time">
+          <span>Horario:</span>
+          <strong>21:30</strong>
+        </p>
+      </div>
+
+      <a class="btn btn--brush" href="#confirmar">Confirmar asistencia</a>
+    </header>
+
+    <section class="details" aria-label="Lugar">
+      <div class="place">
+        <h2 class="place__name">
+          <svg class="place__pin" viewBox="0 0 24 32" aria-hidden="true" focusable="false">
+            <path d="M12 2C6.5 2 2.5 6.2 2.5 11.6 2.5 19 12 30 12 30s9.5-11 9.5-18.4C21.5 6.2 17.5 2 12 2zm0 13.4a3.9 3.9 0 1 1 0-7.8 3.9 3.9 0 0 1 0 7.8z"/>
+          </svg>
+          <span>Ruta 92 y Calle Fuerte</span>
+        </h2>
+        <a class="btn btn--line" href="https://maps.app.goo.gl/NC8EJTGT8jZZxgX38" target="_blank" rel="noopener">
+          Abrir en Google Maps
+        </a>
+      </div>
+    </section>
+
+    <section id="confirmar" class="rsvp" aria-labelledby="rsvp-title" tabindex="-1">
+      <div class="card">
+        <span class="tape tape--left" aria-hidden="true"></span>
+        <span class="tape tape--right" aria-hidden="true"></span>
+
+        <div class="rsvp__intro">
+          <h2 id="rsvp-title" class="rsvp__title">Confirmá tu asistencia</h2>
+          <p>Avisame si venís así calculo cuántos somos.</p>
+        </div>
+
+        <noscript>
+          <p class="form-alert">Para confirmar necesitás tener JavaScript activado en el navegador.</p>
+        </noscript>
+
+        <form id="rsvp-form" class="form" novalidate>
+          <div class="field">
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required
+                   maxlength="100" autocapitalize="words" aria-describedby="nombre-error">
+            <p id="nombre-error" class="field__error" hidden></p>
+          </div>
+
+          <fieldset class="field" id="asiste-group" aria-describedby="asiste-error">
+            <legend>¿Venís?</legend>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="asiste" value="si" required>
+                <span>Sí, ahí estoy</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="asiste" value="no">
+                <span>No voy a poder</span>
+              </label>
+            </div>
+            <p id="asiste-error" class="field__error" hidden></p>
+          </fieldset>
+
+          <fieldset class="field" id="acompanantes-field" hidden aria-describedby="acompanantes-hint acompanantes-error">
+            <legend>¿Viene alguien más con vos?</legend>
+            <p id="acompanantes-hint" class="field__hint">Si venís con tu familia o con alguien más, sumá a cada persona con su nombre. Hasta 10.</p>
+            <ol id="acompanantes-list" class="people"></ol>
+            <button type="button" class="btn btn--line btn--add" id="add-person">+ Agregar persona</button>
+            <p id="acompanantes-max" class="field__hint" hidden>Llegaste al máximo de 10 acompañantes.</p>
+            <p id="acompanantes-error" class="field__error" hidden></p>
+          </fieldset>
+
+          <template id="person-template">
+            <li class="person">
+              <label class="person__label"></label>
+              <div class="person__row">
+                <input type="text" maxlength="100" autocomplete="off" autocapitalize="words">
+                <button type="button" class="person__remove">Quitar</button>
+              </div>
+            </li>
+          </template>
+
+          <!-- Honeypot: las personas no lo ven; si un bot lo completa, no se guarda nada -->
+          <div class="hp" aria-hidden="true">
+            <label for="sitio_web">No completes este campo</label>
+            <input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p id="form-alert" class="form-alert" role="alert" hidden></p>
+
+          <button type="submit" class="btn btn--brush btn--block" id="submit-btn">
+            <span class="btn__label">Enviar confirmación</span>
+          </button>
+        </form>
+
+        <div id="result" class="result" hidden>
+          <svg class="result__check" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path class="result__circle" d="M32 5c15 0 27 12 27 27S47 59 32 59 5 47 5 32 17 6 34 6"/>
+            <path class="result__tick" d="M19 33l9 9 18-20"/>
+          </svg>
+          <h3 id="result-title" class="result__title" tabindex="-1"></h3>
+          <p id="result-text" class="result__text"></p>
+          <button type="button" class="btn btn--text" id="again-btn">Enviar otra respuesta</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="band" aria-hidden="true">
+      <img src="img/vina.jpg" alt="" width="1024" height="344" loading="lazy">
+    </div>
+  </div>
+</body>
+</html>
