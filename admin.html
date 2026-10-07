@@ -25,9 +25,13 @@
 <body>
   <main class="sheet admin">
     <header class="admin__header">
-      <h1 class="admin__title">Lista de confirmados</h1>
-      <p class="admin__sub">La recibida de Tomás, viernes 23 de octubre a las 21:30.</p>
-      <button type="button" class="btn btn--line" id="refresh" hidden>Actualizar</button>
+      <h1 class="admin__title">Lista</h1>
+      <button type="button" class="btn btn--line btn--icon" id="refresh" aria-label="Actualizar" title="Actualizar" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 12a8 8 0 1 1-2.34-5.66"/>
+          <path d="M20 4v5h-5"/>
+        </svg>
+      </button>
     </header>
 
     <form id="login" class="admin__login" novalidate hidden>
@@ -45,8 +49,7 @@
       <p id="admin-status" class="admin__status" role="status" hidden></p>
 
       <section id="admin-summary" class="admin__summary" aria-label="Resumen" hidden>
-        <p class="stat stat--main"><strong id="total-personas">0</strong> <span id="total-personas-label">personas vienen</span></p>
-        <p class="stat"><strong id="total-si">0</strong> <span id="total-si-label">respuestas que sí</span></p>
+        <p class="stat"><strong id="total-si">0</strong> <span id="total-si-label">vienen</span></p>
         <p class="stat"><strong id="total-no">0</strong> <span id="total-no-label">no pueden ir</span></p>
       </section>
 

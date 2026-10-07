@@ -14,8 +14,6 @@
   const refreshBtn = document.getElementById('refresh');
   const summary = document.getElementById('admin-summary');
   const els = {
-    personas: document.getElementById('total-personas'),
-    personasLabel: document.getElementById('total-personas-label'),
     si: document.getElementById('total-si'),
     siLabel: document.getElementById('total-si-label'),
     no: document.getElementById('total-no'),
@@ -168,12 +166,11 @@
 
     const vienen = latest.filter((r) => r.asiste);
     const noVienen = latest.filter((r) => !r.asiste);
-    const personas = vienen.reduce((sum, r) => sum + 1 + (Number(r.acompanantes) || 0), 0);
 
-    els.personas.textContent = personas;
-    els.personasLabel.textContent = personas === 1 ? 'persona viene' : 'personas vienen';
-    els.si.textContent = vienen.length;
-    els.siLabel.textContent = vienen.length === 1 ? 'respuesta que sí' : 'respuestas que sí';
+    // Cada respuesta que sí suma a quien responde más sus acompañantes.
+    const personas = vienen.reduce((sum, r) => sum + 1 + (Number(r.acompanantes) || 0), 0);
+    els.si.textContent = personas;
+    els.siLabel.textContent = personas === 1 ? 'viene' : 'vienen';
     els.no.textContent = noVienen.length;
     els.noLabel.textContent = noVienen.length === 1 ? 'no puede ir' : 'no pueden ir';
     summary.hidden = false;

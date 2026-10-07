@@ -813,9 +813,10 @@ textarea {
 }
 
 .admin__header {
-  display: grid;
-  justify-items: start;
-  gap: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   margin-bottom: 1.75rem;
 }
 
@@ -826,8 +827,30 @@ textarea {
   line-height: 1.1;
 }
 
-.admin__sub {
-  color: var(--ink-soft);
+.btn--icon {
+  flex: none;
+  width: 3.25rem;
+  padding: 0;
+}
+
+.btn--icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn--icon:disabled svg {
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .admin__login {
@@ -901,14 +924,6 @@ textarea {
   font-size: 2.2rem;
   font-weight: 800;
   line-height: 1;
-}
-
-.stat--main {
-  grid-column: 1 / -1;
-}
-
-.stat--main strong {
-  font-size: 3.6rem;
 }
 
 .admin__group {
