@@ -6,8 +6,8 @@
      o, en proyectos viejos, la "anon public" key.
    NUNCA pongas acá la secret key ni la service_role key.
    ============================================================ */
-const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
-const SUPABASE_KEY = 'TU-PUBLISHABLE-KEY';
+const SUPABASE_URL = 'https://plkmaqocxlsoovehyrum.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_uciNGorz2mPdqD6SfbnSoA_BOm-JjGh';
 
 (() => {
   'use strict';
